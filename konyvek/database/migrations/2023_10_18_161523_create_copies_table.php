@@ -33,6 +33,7 @@ return new class extends Migration
         Copy::create([
             'book_id' => 3, 
             'publication' => 2003, 
+            'publication' => 2003, 
         ]);
     }
 
