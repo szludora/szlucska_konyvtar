@@ -27,20 +27,37 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->permission = $request->permission;
+        if ($request->name != null) {
+            $user->name = $request->name;
+        }
+        if ($request->email != null) {
+            $user->email = $request->email;
+        }
+        if ($request->password != null) {
+            $user->password = $request->password;
+        }
+        if ($request->permission != null) {
+            $user->permission = $request->permission;
+        }
         $user->save();
     }
 
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->permission = $request->permission;
+
+        if ($request->name != null) {
+            $user->name = $request->name;
+        }
+        if ($request->email != null) {
+            $user->email = $request->email;
+        }
+        if ($request->password != null) {
+            $user->password = $request->password;
+        }
+        if ($request->permission != null) {
+            $user->permission = $request->permission;
+        }
         $user->save();
     }
     public function destroy($id)
@@ -61,5 +78,4 @@ class UserController extends Controller
         ]);
         return response()->json(["user" => $user]);
     }
-
 }
