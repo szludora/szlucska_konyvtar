@@ -80,13 +80,21 @@ class UserController extends Controller
         return response()->json(["user" => $user]);
     }
 
-    public function lendingByUser(){
-        $user = Auth::user();	//bejelentkezett felhasználó
+    public function lendingByUser()
+    {
+        $user = Auth::user();    //bejelentkezett felhasználó
         $lendings = User::with('lendings') //a függvény neve
-        ->where('id','=',$user->id)
-        ->get();
+            ->where('id', '=', $user->id)
+            ->get();
 
         return $lendings;
     }
+    public function howManyLendingsIHave()
+    {
+        $user = Auth::user();    //bejelentkezett felhasználó
+        $lendings = User::with('lendings') //a függvény neve
+            ->where('id', '=', $user->id)->count();
 
+        return $lendings;
+    }
 }

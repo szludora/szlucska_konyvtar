@@ -45,7 +45,8 @@ class User extends Authenticatable
     ];
 
     public function lendings()
-                                // ott hogy hívják, itt hogy hívják
-    {    return $this->hasMany(Lending::class, 'user_id', 'id');   }
-
+    // ott hogy hívják, itt hogy hívják
+    {
+        return $this->hasMany(Lending::class, 'user_id', 'id');
+    }
 }
