@@ -25,7 +25,19 @@ return new class extends Migration
         Copy::create([
             'book_id' => 1, 
             'hardcovered' => 1, 
-            'publication' => 2003,
+            'publication' => 2024,
+            'status' => 0
+        ]);
+        Copy::create([
+            'book_id' => 2, 
+            'hardcovered' => 1, 
+            'publication' => 2010,
+            'status' => 0
+        ]);
+        Copy::create([
+            'book_id' => 3, 
+            'hardcovered' => 1, 
+            'publication' => 2023,
             'status' => 0
         ]);
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Lending;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,30 @@ return new class extends Migration
             // $table->date('start')->default(getdate());
             $table->timestamps();
         });
+
+        Lending::create([
+            'user_id' => '2',
+            'copy_id' => '1',
+            'start' => '2024.01.24.',
+            'extension' => 'pdf',
+            'date' => '2024.01.24'
+        ]);
+
+        Lending::create([
+            'user_id' => '2',
+            'copy_id' => '2',
+            'start' => '2024.01.24.',
+            'extension' => 'pdf',
+            'date' => '2024.01.24'
+        ]);
+
+        Lending::create([
+            'user_id' => '2',
+            'copy_id' => '3',
+            'start' => '2024.01.24.',
+            'extension' => 'pdf',
+            'date' => '2024.01.24'
+        ]);
     }
 
     /**
