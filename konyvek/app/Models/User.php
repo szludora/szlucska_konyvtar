@@ -43,4 +43,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function lendings()
+                                // ott hogy hívják, itt hogy hívják
+    {    return $this->hasMany(Lending::class, 'user_id', 'id');   }
+
 }

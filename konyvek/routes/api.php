@@ -31,6 +31,8 @@ Route::post('/lendings', [LendingController::class, 'store']);
 Route::put('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'update']);
 Route::delete('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'destroy']);
 Route::patch('/users_update_password/{id}', [UserController::class, 'updatePassword']);
+
 Route::middleware("auth.basic")->group(function(){
     Route::apiResource("/users", UserController::class);
+    Route::get('/lending_by_user', [UserController::class, 'lendingByUser']);
 });

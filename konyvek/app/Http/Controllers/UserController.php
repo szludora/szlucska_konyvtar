@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -78,4 +79,14 @@ class UserController extends Controller
         ]);
         return response()->json(["user" => $user]);
     }
+
+    public function lendingByUser(){
+        $user = Auth::user();	//bejelentkezett felhasználó
+        $lendings = User::with('lendings') //a függvény neve
+        ->where('id','=',$user->id)
+        ->get();
+
+        return $lendings;
+    }
+
 }
