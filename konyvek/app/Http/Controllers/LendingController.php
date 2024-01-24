@@ -52,4 +52,13 @@ class LendingController extends Controller
 
         return $copies;
     }
+
+    public function whatLendingsOnDate($myDate)
+    {
+        $lendings = Lending::with('users') //a függvény neve a modellben
+            ->where('start', $myDate)
+            ->get();
+
+        return $lendings;
+    }
 }

@@ -31,6 +31,8 @@ class Lending extends Model
     }
 
     public function users(){
-        return $this->belongsTo(User::class,'id', 'user_id');
+        // return $this->belongsTo(User::class,'id', 'user_id');
+        // a belongsTo szűkebb halmazt ad vissza, ezért a hasOne-t használjuk
+        return $this->hasOne(User::class,'id', 'user_id');
     }
 }
