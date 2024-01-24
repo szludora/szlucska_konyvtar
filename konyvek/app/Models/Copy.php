@@ -16,4 +16,12 @@ class Copy extends Model
         'publication',
         'status'
     ];
+    
+    public function books(){
+        return $this->belongsTo(Book::class,'book_id', 'book_id');
+    }
+
+    public function lendings(){
+        return $this->belongsTo(Lending::class,'copy_id', 'copy_id');
+    }
 }

@@ -36,4 +36,5 @@ Route::middleware("auth.basic")->group(function(){
     Route::apiResource("/users", UserController::class);
     Route::get('/lending_by_user', [UserController::class, 'lendingByUser']);
     Route::get('/all_lending', [LendingController::class, 'allLendingUserCopy']);
+    Route::get('/all_copies_books_lendings', [CopyController::class, 'allCopiesWithBooksAndLendings']);
 });

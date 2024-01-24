@@ -38,4 +38,11 @@ class CopyController extends Controller
     {
         Copy::findOrFail($id)->delete();
     }
+    public function allCopiesWithBooksAndLendings()
+    {
+        $copies = Copy::with(['books', 'lendings']) //a függvény neve a modellben
+            ->get();
+
+        return $copies;
+    }
 }
