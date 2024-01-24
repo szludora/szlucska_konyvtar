@@ -45,4 +45,11 @@ class LendingController extends Controller
             ->where('copy_id', $copy_id)
             ->where('start', $start)->delete();
     }
+    public function allLendingUserCopy()
+    {
+        $copies = Lending::with(['copies', 'users']) //a függvény neve a modellben
+            ->get();
+
+        return $copies;
+    }
 }

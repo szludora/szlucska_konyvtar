@@ -25,4 +25,12 @@ class Lending extends Model
             ->where('start', '=', $this->getAttribute('start'));
         return $query;
     }
+
+    public function copies(){
+        return $this->belongsTo(Copy::class,'copy_id', 'copy_id');
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class,'id', 'user_id');
+    }
 }
