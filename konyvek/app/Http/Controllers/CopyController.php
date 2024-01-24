@@ -45,4 +45,12 @@ class CopyController extends Controller
 
         return $copies;
     }
+
+    public function allLendingsWith($thisCopy){
+        $lendings = Copy::with(['lendings']) //a függvény neve a modellben
+            ->where('copy_id', $thisCopy)
+            ->get();
+
+        return $lendings;
+    }
 }

@@ -38,4 +38,5 @@ Route::middleware("auth.basic")->group(function(){
     Route::get('/all_lending', [LendingController::class, 'allLendingUserCopy']);
     Route::get('/all_copies_books_lendings', [CopyController::class, 'allCopiesWithBooksAndLendings']);
     Route::get('/whatLendingsOnDate/{myDate}', [LendingController::class, 'whatLendingsOnDate']);
+    Route::get('/allLendingsWith/{thisCopy}', [CopyController::class, 'allLendingsWith']);
 });
