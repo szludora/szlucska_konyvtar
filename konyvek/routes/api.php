@@ -32,7 +32,7 @@ Route::put('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, '
 Route::delete('/lendings/{user_id}/{copy_id}/{start}', [LendingController::class, 'destroy']);
 Route::patch('/users_update_password/{id}', [UserController::class, 'updatePassword']);
 
-Route::middleware("auth.basic")->group(function(){
+Route::middleware("auth.basic")->group(function () {
     Route::apiResource("/users", UserController::class);
     Route::get('/lending_by_user', [UserController::class, 'lendingByUser']);
     Route::get('/all_lending', [LendingController::class, 'allLendingUserCopy']);
@@ -40,4 +40,8 @@ Route::middleware("auth.basic")->group(function(){
     Route::get('/whatLendingsOnDate/{myDate}', [LendingController::class, 'whatLendingsOnDate']);
     Route::get('/allLendingsWith/{thisCopy}', [CopyController::class, 'allLendingsWith']);
     Route::get('howManyLendingsIHave', [UserController::class, 'howManyLendingsIHave']);
+    // db lekérdezések
+    Route::get('title_count', [BookController::class, 'titleCount']);
+    Route::get('softOrHard/{kotes}', [CopyController::class, 'hAuthorTitle']);
+    Route::get('whereYear/{year}', [CopyController::class, 'year']);
 });
