@@ -1,5 +1,6 @@
 {
-    "require-dev": {
-        "laravel/breeze": "^1.28"
-    }
+  "require-dev": {
+    "laravel/breeze": "^1.28",
+    "tymon/jwt-auth": "^2.0"
+  }
 }
