@@ -1,10 +1,10 @@
 import "./App.css";
-import Konyvek from "./component/Konyvek";
+import Konyvek from "./component/kartyak/Konyvek";
 import DataService from "./model/DataService";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useEffect, useState } from "react";
-import Tablazatom from "./component/Tablazatom";
+import Tablazatom from "./component/tablazatom/Tablazatom";
 const DS = new DataService();
 
 function App() {
