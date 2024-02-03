@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useEffect, useState } from "react";
 import Tablazatom from "./component/tablazatom/Tablazatom";
+import Urlap from "./component/urlap/Urlap";
 const DS = new DataService();
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
     <div className="App">
       <header className="App-header"></header>
       <Container>
+        <Row>
+          <Urlap />
+        </Row>
         <Row style={{ marginTop: "2em" }}>
           <Konyvek konyvek={objLista} />
         </Row>
