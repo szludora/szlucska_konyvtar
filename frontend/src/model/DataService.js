@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class DataService {
   constructor() {
-    axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
+    axios.defaults.baseURL = "http://127.0.0.1:8000/api";
   }
   getData(vegpont, callback) {
     axios
