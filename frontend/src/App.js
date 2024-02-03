@@ -23,7 +23,9 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <header className="App-header">
+        Props, state, eseménykezelők használata, gyakorlása
+      </header>
       <Container>
         <Row>
           <Urlap />
@@ -35,6 +37,7 @@ function App() {
           <Tablazatom adatok={objLista} lista={lista} torles={torles} />
         </Row>
       </Container>
+      <footer className="App-footer">Készítette: Szlucska Dóra</footer>
     </div>
   );
 }
