@@ -32,6 +32,16 @@ return new class extends Migration
             'title' => "Száz év magány", 
             
         ]);
+        Book::create([
+            'author' => "Dóra", 
+            'title' => "Soha se tudni", 
+            
+        ]);
+        Book::create([
+            'author' => "Alexa", 
+            'title' => "Volt ami nincs", 
+            
+        ]);
     }
 
     /**
