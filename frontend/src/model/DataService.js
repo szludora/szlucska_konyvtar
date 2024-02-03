@@ -29,12 +29,11 @@ export default class DataService {
       .finally(function () {});
   }
 
-  deleteData(vegpont, id, callback) {
+  deleteData(vegpont, id) {
     axios
       .delete(vegpont + "/" + id)
       .then(function (response) {
-        callback(response.data);
-        console.log("törölve");
+        console.log("DS: törölve", response.data);
       })
       .catch(function (error) {
         console.log(error);
