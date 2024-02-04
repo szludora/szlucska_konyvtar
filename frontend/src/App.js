@@ -26,6 +26,7 @@ function App() {
 
   function kuldes(adat) {
     DS.postData(vegpont, adat);
+    setObjLista([...objLista, adat])
 
     console.log("kuldve:", adat);
   }
