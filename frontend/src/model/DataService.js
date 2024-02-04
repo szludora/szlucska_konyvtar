@@ -8,10 +8,10 @@ export default class DataService {
     axios
       .get(vegpont)
       .then(function (response) {
-        callback(response.data, response.status);
+        callback(response.data);
       })
       .catch(function (error) {
-        callback(error.response.data.message, error.response.status)
+        console.log(error.response)
       })
       .finally(function () {});
   }

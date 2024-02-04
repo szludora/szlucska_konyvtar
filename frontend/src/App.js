@@ -11,21 +11,12 @@ const DS = new DataService();
 function App() {
   let vegpont = "/books";
   // Konyvek, Cella js-ben leellenőrizzük, hogy null az értéke vagy sem
-  const [objLista, setObjLista] = useState(null);
+  const [objLista, setObjLista] = useState([{}]);
   const lista = ["Id", "Szerző", "Cím", "Leírás", "", ""];
 
   useEffect(() => {
     DS.getData(
-      vegpont,
-      (response, status) => {
-        console.log(response, status)
-        if (status >= 200 && status <= 299) {
-          setObjLista(response);
-        }else{
-          console.log(response, status)
-        }
-      },
-      [objLista]
+      vegpont, setObjLista
     );
   });
 
