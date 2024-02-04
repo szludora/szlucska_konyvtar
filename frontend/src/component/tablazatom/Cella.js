@@ -5,8 +5,8 @@ export default function Cella(props) {
     console.log("Törlöm a(z) " + e + ". könyvet");
     props.torles(e)
   }
-
-  return props.lista.map((e, i) => {
+  // ha a props.lista nem null
+  return props.lista && props.lista.map((e, i) => {
     return <KonyvSor elem={e} key={i} torles={torles} />;
   });
 }

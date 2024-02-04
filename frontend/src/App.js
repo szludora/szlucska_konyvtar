@@ -10,16 +10,34 @@ const DS = new DataService();
 
 function App() {
   let vegpont = "/books";
-  const [objLista, setObjLista] = useState([{}]);
+  // Konyvek, Cella js-ben leellenőrizzük, hogy null az értéke vagy sem
+  const [objLista, setObjLista] = useState(null);
   const lista = ["Id", "Szerző", "Cím", "Leírás", "", ""];
 
   useEffect(() => {
-    DS.getData(vegpont, setObjLista);
-  }, []);
+    DS.getData(
+      vegpont,
+      (response, status) => {
+        console.log(response, status)
+        if (status >= 200 && status <= 299) {
+          setObjLista(response);
+        }else{
+          console.log(response, status)
+        }
+      },
+      [objLista]
+    );
+  });
 
   function torles(id) {
     console.log("App.js");
     DS.deleteData(vegpont, id);
+  }
+
+  function kuldes(adat) {
+    DS.postData(vegpont, adat);
+
+    console.log("kuldve:", adat);
   }
   return (
     <div className="App">
@@ -28,7 +46,7 @@ function App() {
       </header>
       <Container>
         <Row>
-          <Urlap />
+          <Urlap kuldes={kuldes} />
         </Row>
         <Row style={{ marginTop: "2em" }}>
           <Konyvek konyvek={objLista} />
