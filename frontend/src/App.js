@@ -11,14 +11,13 @@ const DS = new DataService();
 function App() {
   let vegpont = "/books";
   // Konyvek, Cella js-ben leellenőrizzük, hogy null az értéke vagy sem
-  const [objLista, setObjLista] = useState([{}]);
   const lista = ["Id", "Szerző", "Cím", "Leírás", "", ""];
+  const [objLista, setObjLista] = useState([{}]);
 
+  //https://bobbyhadz.com/blog/react-too-many-re-renders-react-limits-the-number
   useEffect(() => {
-    DS.getData(
-      vegpont, setObjLista
-    );
-  });
+    DS.getData(vegpont, setObjLista);
+  }, []);
 
   function torles(id) {
     console.log("App.js");

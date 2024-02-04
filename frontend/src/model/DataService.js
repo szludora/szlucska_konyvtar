@@ -11,7 +11,7 @@ export default class DataService {
         callback(response.data);
       })
       .catch(function (error) {
-        console.log(error.response)
+       // console.log(error);
       })
       .finally(function () {});
   }
@@ -20,12 +20,11 @@ export default class DataService {
     axios
       .post(vegpont, data)
       .then(function (response) {
-        callback(response.data, response.status);
+        callback(response.data);
         console.log("sikeres");
       })
       .catch(function (error) {
-        console.log(error.response.data.message);
-        console.log(error.response.status);
+        //console.log(error);
       })
       .finally(function () {});
   }
@@ -34,12 +33,11 @@ export default class DataService {
     axios
       .delete(vegpont + "/" + id)
       .then(function (response) {
-        callback(response.data, response.status);
+        callback(response.data);
         console.log("sikeres törlés");
       })
       .catch(function (error) {
-        console.log(error.response.data.message);
-        console.log(error.response.status);
+   //     console.log(error);
       })
       .finally(function () {});
   }
