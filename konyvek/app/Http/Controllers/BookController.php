@@ -16,28 +16,29 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = response()->json(Book::findOrFail($id));
+        $book = response()->json(Book::find($id));
         return $book;
     }
 
     public function store(Request $request)
     {
-        $book = new Book();
-        $book->author = $request->author;
-        $book->title = $request->title;
-        $book->save();
+        $Book = new Book();
+        $Book->author = $request->author;
+        $Book->title = $request->title;
+        $Book->save();
     }
 
     public function update(Request $request, $id)
     {
-        $book = Book::findOrFail($id);
-        $book->author = $request->author;
-        $book->title = $request->title;
-        $book->save();
+        $Book = Book::find($id);
+        $Book->author = $request->author;
+        $Book->title = $request->title;
+        $Book->save();
     }
     public function destroy($id)
     {
-        Book::findOrFail($id)->delete();
+        //find helyett a paraméter
+        Book::find($id)->delete();
     }
 
     public function titleCount($title)
@@ -47,6 +48,20 @@ class BookController extends Controller
             ->join('copies as c', 'b.book_id', '=', 'c.book_id') //kapcsolat leírása, akár több join is lehet
             ->where('title', '=', $title)     //esetleges szűrés
             ->count();                //esetleges aggregálás; ha select, akkor get() a vége
+
         return $copies;
+    }
+
+    /*
+    Határozd meg a könyvtár nyilvántartásában legalább 2 könyvvel rendelkező szerzőket!
+    */
+
+    public function authorsWithMoreBooks()
+    {
+        return DB::table('books')
+            ->selectRaw('author, count(*)')
+            ->groupBy('author')
+            ->having('count(*)', '>', 1)
+            ->get();
     }
 }

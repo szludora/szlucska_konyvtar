@@ -13,59 +13,40 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(){
         $users = response()->json(User::all());
         return $users;
     }
 
-    public function show($id)
-    {
-        $user = response()->json(User::findOrFail($id));
+    public function show($id){
+        $user = response()->json(User::find($id));
         return $user;
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $user = new User();
-        if ($request->name != null) {
-            $user->name = $request->name;
-        }
-        if ($request->email != null) {
-            $user->email = $request->email;
-        }
-        if ($request->password != null) {
-            $user->password = $request->password;
-        }
-        if ($request->permission != null) {
-            $user->permission = $request->permission;
-        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->permission = $request->permission;
         $user->save();
     }
 
-    public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-
-        if ($request->name != null) {
-            $user->name = $request->name;
-        }
-        if ($request->email != null) {
-            $user->email = $request->email;
-        }
-        if ($request->password != null) {
-            $user->password = $request->password;
-        }
-        if ($request->permission != null) {
-            $user->permission = $request->permission;
-        }
+    public function update(Request $request, $id){
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->permission = $request->permission;
         $user->save();
     }
     public function destroy($id)
     {
-        //findOrFail helyett a paraméter
-        User::findOrFail($id)->delete();
+        //find helyett a paraméter
+        User::find($id)->delete();
     }
+
+    //egyéb fg-ek:
     public function updatePassword(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
@@ -77,24 +58,16 @@ class UserController extends Controller
         $user = User::where("id", $id)->update([
             "password" => Hash::make($request->password),
         ]);
-        return response()->json(["user" => $user]);
+        /* return response()->json(["user" => $user]); */
     }
 
-    public function lendingByUser()
-    {
-        $user = Auth::user();    //bejelentkezett felhasználó
+    public function lendingByUser(){
+        $user = Auth::user();	//bejelentkezett felhasználó
         $lendings = User::with('lendings') //a függvény neve
-            ->where('id', '=', $user->id)
-            ->get();
-
+        ->where('id','=',$user->id)
+        ->get();
         return $lendings;
     }
-    public function howManyLendingsIHave()
-    {
-        $user = Auth::user();    //bejelentkezett felhasználó
-        $lendings = User::with('lendings') //a függvény neve
-            ->where('id', '=', $user->id)->count();
 
-        return $lendings;
-    }
+
 }

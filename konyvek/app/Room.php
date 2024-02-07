@@ -1,9 +1,12 @@
 <?php
+
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class Room
-{
-    protected $people = [];
+{  	 protected $people = [];
 
 
   public function __construct($people = [])
@@ -36,3 +39,4 @@ if (($key = array_search($person, $this->people)) !== false)
       return array_shift($this->people);
   }
 }
+

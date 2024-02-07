@@ -27,14 +27,14 @@ return new class extends Migration
         });
 
         User::create([
-            'name' => 'admin', 
+            'name' => 'Admin', 
             'email' => 'admin@gmail.com', 
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('abrakadabra'),
             'permission' => 'admin']);
 
         User::create([
             'name' => 'Dóri', 
-            'email' => 'dora@gmail.com', 
+            'email' => 'dori@gmail.com', 
             'password' => Hash::make('blabla')]);
 
         User::create([

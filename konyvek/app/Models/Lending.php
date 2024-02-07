@@ -9,14 +9,7 @@ class Lending extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'copy_id',
-        'start',
-        'extension',
-    ];
-
-    // ez állítja be a primary keyt (összetett kulcsként)
+    //összetett kulcs megadása:
     protected function setKeysForSaveQuery($query)
     {
         $query
@@ -26,13 +19,18 @@ class Lending extends Model
         return $query;
     }
 
-    public function copies(){
-        return $this->belongsTo(Copy::class,'copy_id', 'copy_id');
-    }
+        protected $fillable = [
+        'user_id',
+        'copy_id',
+        'start',
+        'end',
+        'extension',
+        'notice'
+    ];
 
-    public function users(){
-        // return $this->belongsTo(User::class,'id', 'user_id');
-        // a belongsTo szűkebb halmazt ad vissza, ezért a hasOne-t használjuk
-        return $this->hasOne(User::class,'id', 'user_id');
-    }
+    public function copies()
+    {    return $this->belongsTo(Copy::class, 'copy_id', 'copy_id');   }
+
+    public function users()
+    {    return $this->belongsTo(User::class, 'id', 'user_id');   }
 }

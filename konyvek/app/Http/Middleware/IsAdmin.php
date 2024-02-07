@@ -14,11 +14,9 @@ class IsAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next)
-    {
-        if (Auth::user() && Auth::user()->permission == 0) {
-            return $next($request);
-        }
-        return redirect('/home')->with('You have not admin access', 401);
-    }
+    public function handle($request, Closure $next) { if (Auth::user() && Auth::user()->permission == 'admin') 
+        {   //átengedi a kérést
+            return $next($request); } 
+    //hibaüzenetet küldünk
+    return response('You have not admin access', 401); }
 }
