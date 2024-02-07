@@ -23,11 +23,11 @@ return new class extends Migration
             $table->timestamps();
         });
         Copy::create([
-            'book_id' => 1, 
+            'book_id' => 3, 
             'hardcovered' => 1
         ]);
         Copy::create([
-            'book_id' => 2, 
+            'book_id' => 3, 
             'status' => 1
         ]);
         Copy::create([
