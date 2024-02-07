@@ -20,10 +20,7 @@ class CopyController extends Controller
 
     public function store(Request $request){
         $copy = new Copy();
-        $copy->book_id = $request->book_id;
-        $copy->hardcovered = $request->hardcovered;
-        $copy->status = $request->status;
-        $copy->publication = $request->publication;
+        $copy->fill($request->all());
         $copy->save();
     }
 

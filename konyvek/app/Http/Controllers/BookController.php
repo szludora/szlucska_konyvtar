@@ -22,23 +22,22 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $Book = new Book();
-        $Book->author = $request->author;
-        $Book->title = $request->title;
-        $Book->save();
+        $book = new Book();
+        $book->fill($request->all());
+        $book->save();
     }
 
     public function update(Request $request, $id)
     {
-        $Book = Book::find($id);
-        $Book->author = $request->author;
-        $Book->title = $request->title;
-        $Book->save();
+        $book = Book::findorFail($id);
+        $book->author = $request->author;
+        $book->title = $request->title;
+        $book->save();
     }
     public function destroy($id)
     {
         //find helyett a paraméter
-        Book::find($id)->delete();
+        Book::findOrFail($id)->delete();
     }
 
     public function titleCount($title)
