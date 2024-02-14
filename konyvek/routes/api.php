@@ -33,13 +33,15 @@ Route::middleware('auth.basic')->group(function () {
             Route::apiResource('/users', UserController::class);
     });
     //Lekérdezések with
-    Route::get('lending_by_user', [UserController::class, 'lendingByUser']);
-    Route::get('all_lending_user_copy', [LendingController::class, 'allLendingUserCopy']);
-    Route::get('lendings_count_user', [LendingController::class, 'lendingsCountByUser']);
+    Route::get('lending-by-user', [UserController::class, 'lendingByUser']);
+    Route::get('all-lending-user-copy', [LendingController::class, 'allLendingUserCopy']);
+    Route::get('lendings-count-user', [LendingController::class, 'lendingsCountByUser']);
     //DB lekérdezések
-    Route::get('title_count/{title}', [BookController::class, 'titleCount']);
-    Route::get('h_author_title/{hardcovered}', [CopyController::class, 'hAuthorTitle']);
+    Route::get('title-count/{title}', [BookController::class, 'titleCount']);
+    Route::get('h-author-title/{hardcovered}', [CopyController::class, 'hAuthorTitle']);
     Route::get('ev/{year}', [CopyController::class, 'ev']);
+    // 2 tábla módosítása egyszerre
+    Route::patch('bring-back/{copy_id}/{start}', [LendingController::class, 'bringBack']);
 });
 
 //guest is láthatja
@@ -60,7 +62,7 @@ Route::delete('/reservations/{book_id}/{user_id}/{start}', [ReservationControlle
 Route::put('/reservations/{book_id}/{user_id}/{start}', [ReservationController::class, 'update']);
 
 //egyéb végpontok
-Route::patch('/user_update_password/{id}', [UserController::class, 'updatePassword']);
+Route::patch('/user-update-password/{id}', [UserController::class, 'updatePassword']);
 
 // Kebab Case elérési útvonalhoz
 // 1 könyvnél több könyvvel rendelkező szerzők

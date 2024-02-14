@@ -55,22 +55,36 @@ class LendingController extends Controller
         return $lendings;
     }
 
-// Listázd ki a mai napon visszahozott könyveket!
-    public function today(){
+    // Listázd ki a mai napon visszahozott könyveket!
+    public function today()
+    {
         return DB::table('lendings as l')
-        ->selectRaw('title, author')
-        ->join('copies as c','l.copy_id','c.copy_id')
-        ->join('books as b', 'c.book_id', 'b.book_id')
-        ->whereDate('end', now()) 
-        ->get();
+            ->selectRaw('title, author')
+            ->join('copies as c', 'l.copy_id', 'c.copy_id')
+            ->join('books as b', 'c.book_id', 'b.book_id')
+            ->whereDate('end', now())
+            ->get();
     }
 
-    public function broughtBackOn($myDate){
+    public function broughtBackOn($myDate)
+    {
         return DB::table('lendings as l')
-        ->selectRaw('title, author')
-        ->join('copies as c','l.copy_id','c.copy_id')
-        ->join('books as b', 'c.book_id', 'b.book_id')
-        ->where('end', $myDate)
-        ->get();
+            ->selectRaw('title, author')
+            ->join('copies as c', 'l.copy_id', 'c.copy_id')
+            ->join('books as b', 'c.book_id', 'b.book_id')
+            ->where('end', $myDate)
+            ->get();
+    }
+
+    public function bringBack($copy_id, $start)
+    {
+        // egy függvényben két ugyanolyan típusú kérés  - patch
+        $user = Auth::user();
+        $lending = LendingController::show($user->id, $copy_id, $start);
+        $lending->end = date(now());
+        $lending->save();
+        DB::table('copies')
+            ->where('copy_id', $copy_id)
+            ->update(['status' => 0]);
     }
 }
